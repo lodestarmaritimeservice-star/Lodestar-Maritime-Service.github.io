@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lodestar Maritime Service | Naval Architecture & Engineering</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-navy: #0a192f;
+            --secondary-navy: #112240;
+            --accent-cyan: #64ffda;
+            --steel-text: #8892b0;
+            --white-text: #e6f1ff;
+            --highlight: #172a45;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-navy);
+            color: var(--white-text);
+            line-height: 1.6;
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1516216628859-9bccecab13ca?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            margin: 0;
+            color: var(--accent-cyan);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .hero-tagline {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--steel-text);
+            margin: 20px 0;
+        }
+
+        /* --- SHARED STRUCTURES --- */
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--white-text);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--secondary-navy);
+            padding: 30px;
+            border-radius: 4px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            background: var(--highlight);
+        }
+
+        .service-card h3 {
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .service-card i {
+            font-size: 2rem;
+            color: var(--steel-text);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- SPECIALIZED SECTION --- */
+        .specialized-section {
+            background-color: #050b14;
+            border-top: 1px solid var(--secondary-navy);
+            border-bottom: 1px solid var(--secondary-navy);
+        }
+        
+        .specialized-card {
+            background: rgba(100, 255, 218, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        /* --- PROCESS SECTION --- */
+        .process-section {
+            background-color: #020c1b;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .process-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--secondary-navy) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after {
+            content: ''; position: absolute; width: 2px; background: var(--accent-cyan);
+            top: 0; bottom: 0; left: 50%; margin-left: -1px; opacity: 0.3;
+        }
+
+        .step { padding: 10px 40px; position: relative; width: 50%; }
+        .step::after {
+            content: ''; position: absolute; width: 20px; height: 20px; right: -10px;
+            background-color: var(--primary-navy); border: 4px solid var(--accent-cyan);
+            top: 15px; border-radius: 50%; z-index: 1;
+        }
+
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; }
+        .right::after { left: -10px; }
+
+        .content { padding: 20px; background: var(--secondary-navy); border-radius: 6px; }
+        .content h4 { color: var(--accent-cyan); margin: 0 0 10px 0; font-family: 'Roboto Mono'; }
+
+        /* --- CONTACT --- */
+        .contact-section { text-align: center; padding: 100px 20px; background-color: var(--primary-navy); }
+
+        .cta-btn {
+            display: inline-block; padding: 15px 30px; border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan); text-decoration: none; font-family: 'Roboto Mono', monospace;
+            font-weight: bold; transition: 0.3s; margin: 10px; border-radius: 4px;
+        }
+
+        .cta-btn:hover { background: rgba(100, 255, 218, 0.1); box-shadow: 0 0 15px rgba(100, 255, 218, 0.2); }
+
+        .contact-info {
+            margin-top: 40px;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--steel-text);
+            font-size: 1.1rem;
+        }
+
+        .contact-info p { margin: 10px 0; }
+        .contact-info i { color: var(--accent-cyan); margin-right: 10px; }
+
+        footer {
+            text-align: center; padding: 40px; color: var(--steel-text);
+            font-size: 0.9rem; border-top: 1px solid var(--secondary-navy); background: #020c1b;
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .step { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left; }
+            .step::after { left: 21px; }
+            .right { left: 0%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1 data-aos="fade-down">Lodestar Maritime</h1>
+        <p class="hero-tagline" data-aos="fade-up" data-aos-delay="300">> Industrial Marine Design Systems _</p>
+        <a href="#services" class="cta-btn">EXPLORE CAPABILITIES</a>
+    </header>
+
+    <div class="container" id="services">
+        <h2 class="section-title" data-aos="fade-up">Core Naval Architecture</h2>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up"><h3>GA Plan</h3><p>General Arrangement drawings for optimal space utilization and regulatory compliance.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>Mid Ship Section</h3><p>Structural midship design and verification for robust hull integrity.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>Lines Plan & Offset</h3><p>Hull form development and precise offset table calculation for manufacturing.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>Tank & Capacity</h3><p>Detailed volume analysis, tank distribution, and calibration charts.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>Section Modulus</h3><p>Structural integrity checks and midship modulus calculation to IACS standards.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>Speed & Power</h3><p>Propulsion analysis, resistance estimation, and hydrodynamic efficiency.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>Hydrostatics</h3><p>Comprehensive stability criteria and hydrostatic information packets.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>Equipment No.</h3><p>Calculation for mooring, anchoring equipment, and chain parameters.</p></div>
+            <div class="service-card" data-aos="fade-up"><h3>3D Modeling</h3><p>High-fidelity 3D assets for engineering, CFD analysis, and visualization.</p></div>
+        </div>
+    </div>
+
+    <section class="specialized-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Advanced Solutions & Documentation</h2>
+            <div class="services-grid">
+                <div class="service-card specialized-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Leveraging AI and data-driven models for predictive maintenance, route optimization, and hull performance analysis.</p>
+                </div>
+                <div class="service-card specialized-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fa-solid fa-book-journal-whills"></i>
+                    <h3>Tech Manuals</h3>
+                    <p>Comprehensive operational manuals, safety documentation, and technical guidelines tailored to specific vessels.</p>
+                </div>
+                <div class="service-card specialized-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <h3>Bill of Quantity (BOQ)</h3>
+                    <p>Detailed material take-offs and precise cost estimations to streamline shipyard procurement and budgeting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <h2 class="section-title" data-aos="fade-up">Our Workflow</h2>
+        <div class="timeline">
+            <div class="step left" data-aos="fade-right">
+                <div class="content">
+                    <h4>01. Inquiry & Scope</h4>
+                    <p>Initial technical consultation to define vessel parameters and requirements.</p>
+                </div>
+            </div>
+            <div class="step right" data-aos="fade-left">
+                <div class="content">
+                    <h4>02. Preliminary Design</h4>
+                    <p>Drafting of Lines Plans and GA Plans to establish the hull baseline.</p>
+                </div>
+            </div>
+            <div class="step left" data-aos="fade-right">
+                <div class="content">
+                    <h4>03. Engineering Analysis</h4>
+                    <p>Rigorous Midship Section modulus and Hydrostatic stability calculations.</p>
+                </div>
+            </div>
+            <div class="step right" data-aos="fade-left">
+                <div class="content">
+                    <h4>04. Advanced Integration</h4>
+                    <p>Speed-power predictions and machine learning optimization of the design.</p>
+                </div>
+            </div>
+            <div class="step left" data-aos="fade-right">
+                <div class="content">
+                    <h4>05. Final Deliverables</h4>
+                    <p>Delivery of 3D Models, Tech Manuals, BOQ, and final capacity plans.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2 class="section-title" data-aos="zoom-in">Ready to Launch?</h2>
+        <p style="color: var(--steel-text); margin-bottom: 40px;">Contact Lodestar Maritime Service for professional maritime engineering.</p>
+        
+        <a href="mailto:lodestarmaritimeservice@gmail.com" class="cta-btn"><i class="fa-solid fa-envelope"></i> EMAIL US</a>
+        <a href="https://wa.me/8801976848901" class="cta-btn" style="border-color: #25d366; color: #25d366;"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
+        
+        <div class="contact-info" data-aos="fade-up">
+            <p><i class="fa-solid fa-phone"></i> +880 1976848901</p>
+            <p><i class="fa-solid fa-location-dot"></i> Uttara, Dhaka 1230, Bangladesh</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Lodestar Maritime Service | Precision Naval Architecture | Uttara, Dhaka</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>
